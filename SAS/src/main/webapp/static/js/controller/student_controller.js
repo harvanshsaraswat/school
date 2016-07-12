@@ -147,8 +147,11 @@ App.controller('StudentController', ['$scope', 'StudentService', function($scope
               for(var i = 0; i < self.students.length; i++){
                   if(self.students[i].stuId == id) {
                      self.student = angular.copy(self.students[i]);
-                     document.getElementById("stuDob").value=self.student.stuDob;
-                     console.log('Studentto be edited', self.student.stuName);
+                     self.student.stuDob = new Date(self.student.stuDob);
+                     self.student.stuTcReceiveDate = new Date(self.student.stuTcReceiveDate);
+                     self.student.stuAddDate = new Date(self.student.stuAddDate);
+                   
+
                      break;
                   }
               }
@@ -158,6 +161,15 @@ App.controller('StudentController', ['$scope', 'StudentService', function($scope
           self.change = function(cls){
               console.log('cls to be edited', cls);
               self.fetchSections(cls);
+          };
+          
+          /*------------------------------------------- for date field -------------------------------------  */  
+          
+          
+          self.removeClass = function(ccc){
+        	  console.log("in dob");
+        	  var myEl = angular.element( document.querySelector( '#stuDob' ) );
+        	  myEl.removeClass('placeholderclass'); 
           };
           
           
@@ -208,7 +220,7 @@ App.controller('StudentController', ['$scope', 'StudentService', function($scope
 
           
           self.reset = function(){
-        	  self.Student={stuId:null,stuRollNo:'',stuSrNo:'',stuName:'',stuProvince:'',stuBloodGroup:'',
+        	  self.student={stuId:null,stuRollNo:'',stuSrNo:'',stuName:'',stuProvince:'',stuBloodGroup:'',
           			 stuFatherName:'', stuFatherIncome:'',stuFatherOccupation:'',stuMotherName:'',stuDob:'',
          			 stuGender:'',stuPerAddress:'',stuPerPin:'',stuMailAddress:'',stuMailPin:'',
          			 stuMobile:'',stuAlterMobile:'',stuEmail:'',stuNatinality:'',stuMotherToung:'',
