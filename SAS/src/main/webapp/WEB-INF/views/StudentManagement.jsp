@@ -68,9 +68,9 @@
 										class="text-format form-control input-sm dateclass placeholderclass" ng-attr-placeholder="$(this).removeClass('placeholderclass')"
 										placeholder="Enter DOB" /> -->
 									<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
-										placeholder="Enter DOB"
-										ng-onClick="$(this).removeClass('placeholderclass')"
-										class="text-format form-control input-sm dateclass placeholderclass">
+										placeholder="Student DOB"
+										ng-click="ctrl.removeClass('placeholderclass')"
+										class=" text-format form-control input-sm dateclass placeholderclass">
 
 
 
@@ -643,7 +643,7 @@
 							<th>Name
 
 								<p>
-									<input type="text" ng-model="searchText['stuId']"
+									<input type="text" ng-model="searchText['stuName']"
 										style="width: 50px;" />
 								</p>
 
@@ -658,7 +658,7 @@
 							</th>
 							<th>Class
 								<p>
-									<input type="text" ng-model="searchText['stuId']"
+									<input type="text" ng-model="searchText['stuClass']"
 										style="width: 50px;" />
 								</p>
 
@@ -671,7 +671,7 @@
 							</th>
 							<th>Mobile
 								<p>
-									<input type="text" ng-model="searchText['stuId']"
+									<input type="text" ng-model="searchText['stuMobile']"
 										style="width: 80px;" />
 								</p>
 							</th>
@@ -680,14 +680,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="u in ctrl.students">
+						<tr ng-repeat="u in ctrl.students | filter: searchText">
 							<td><span ng-bind="u.stuId"></span></td>
 							<td><span ng-bind="u.stuName"></span></td>
 							<td><span ng-bind="u.stuFatherName"></span></td>
 							<td><span ng-bind="u.stuDob |  date:'MM/dd/yyyy'"></span></td>
 							<td><span ng-bind="u.stuClass"></span></td>
 							<td><span ng-bind="u.stuSection"></span></td>
-							<td><span ng-bind="u.stuMobile "></span></td>
+							<td><span ng-bind="u.stuMobile"></span></td>
 							<td>
 								<button type="button" ng-click="ctrl.edit(u.stuId)"
 									class="btn btn-success custom-width">Edit</button>
