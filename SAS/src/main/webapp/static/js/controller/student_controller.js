@@ -2,7 +2,7 @@
  
 App.controller('StudentController', ['$scope', 'StudentService', function($scope, StudentService) {
           var self = this;
-          self.Student={stuId:null,stuRollNo:'',stuSrNo:'',stuName:'',stuProvince:'',stuBloodGroup:'',
+          self.student={stuId:null,stuRollNo:'',stuSrNo:'',stuName:'',stuProvince:'',stuBloodGroup:'',
      			 stuFatherName:'', stuFatherIncome:'',stuFatherOccupation:'',stuMotherName:'',stuDob:'',
     			 stuGender:'',stuPerAddress:'',stuPerPin:'',stuMailAddress:'',stuMailPin:'',
     			 stuMobile:'',stuAlterMobile:'',stuEmail:'',stuNatinality:'',stuMotherToung:'',
@@ -166,9 +166,10 @@ App.controller('StudentController', ['$scope', 'StudentService', function($scope
           /*------------------------------------------- for date field -------------------------------------  */  
           
           
-          self.removeClass = function(ccc){
-        	  console.log("in dob");
-        	  var myEl = angular.element( document.querySelector( '#stuDob' ) );
+          self.removeClass = function(fieldId){
+        	  
+        	  var myEl = angular.element( document.querySelector( "#"+fieldId ) );
+        	 
         	  myEl.removeClass('placeholderclass'); 
           };
           

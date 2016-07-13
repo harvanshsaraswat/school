@@ -56,6 +56,18 @@
 							</div>
 							<div class="form-group col-md-6"></div>
 						</div>
+						
+						 <div class="row">
+                      
+                        <div class="form-group col-md-12">
+                        
+                        <input type="file" ng-file-select="onFileSelect($files)" >
+                        
+                        <b>Preview:</b><br />
+   <i ng-hide="imageSrc">No image choosed</i>
+   <img ng-src="{{imageSrc}}" style="width:100px;"/><br/>
+                        </div>
+                      </div>
 						<div class="row">
 
 
@@ -69,7 +81,7 @@
 										placeholder="Enter DOB" /> -->
 									<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
 										placeholder="Student DOB"
-										ng-click="ctrl.removeClass('placeholderclass')"
+										ng-click="ctrl.removeClass('stuDob')"
 										class=" text-format form-control input-sm dateclass placeholderclass">
 
 
@@ -455,7 +467,7 @@
 									<input type="date" ng-model="ctrl.student.stuTcReceiveDate"
 										id="stuTcReceiveDate"
 										class="text-format form-control input-sm dateclass placeholderclass"
-										ng-onClick="$(this).removeClass('placeholderclass')"
+										ng-click="ctrl.removeClass('stuTcReceiveDate')"
 										placeholder="TC Recv Date" />
 
 
@@ -577,7 +589,7 @@
 									<input type="date" ng-model="ctrl.student.stuAddDate"
 										id="stuAddDate"
 										class="text-format form-control input-sm dateclass placeholderclass"
-										ng-onClick="$(this).removeClass('placeholderclass')"
+										ng-click="ctrl.removeClass('stuAddDate')"
 										placeholder="AdmissionDate" />
 
 
