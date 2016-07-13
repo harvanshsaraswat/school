@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,26 @@ public class StudentAttendanceController {
 	@Autowired
 	StudentAttendanceService studentAttendanceService;
 	
+	
+	//-------------------Saving studentAttendance--------------------------------------------------------
+	
+		 @RequestMapping(value = "/studentAttendance/", method = RequestMethod.POST)
+		    public ResponseEntity<Void> saveStudentAttendance(@RequestBody List<StudentAttendance> studentsAttendance,    UriComponentsBuilder ucBuilder) {
+		       // System.out.println("saving Student Attendance " + studentAttendance.getStuId());
+		 
+		        
+		 System.out.println(studentsAttendance);
+
+		 studentAttendanceService.saveStudentsAttendance(studentsAttendance);
+		  HttpHeaders headers = new HttpHeaders();
+	      //  headers.setLocation(ucBuilder.path("/student/{id}").buildAndExpand(student.getStuId()).toUri());
+	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		    }
+		 
+		 
+		 
 	 @RequestMapping(value = "/studentAttendance/{date}", method = RequestMethod.GET)
-	    public ResponseEntity<List<StudentAttendance>> listAllStudentAttendanceByDate(@PathVariable("date") Date date) {
+	    public ResponseEntity<List<StudentAttendance>> listAllStudentAttendanceByDate(@PathVariable("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date  date) {
 		 
 		List<StudentAttendance> studentsAttendance= studentAttendanceService.getAllStudentsAttendaceByDate(date);
 		for(StudentAttendance studentAttendance:studentsAttendance)
@@ -55,7 +75,7 @@ public class StudentAttendanceController {
 	 
 	  //-------------------Create a StudentAttendance--------------------------------------------------------
 	     
-	    @RequestMapping(value = "/studentAttendance/", method = RequestMethod.POST)
+	    /*@RequestMapping(value = "/studentAttendance/", method = RequestMethod.POST)
 	    public ResponseEntity<Void> createUser(@RequestBody StudentAttendance studentAttendance,    UriComponentsBuilder ucBuilder) {
 	        System.out.println("Creating Student Attendance " + studentAttendance.getStuId());
 	 
@@ -66,7 +86,7 @@ public class StudentAttendanceController {
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setLocation(ucBuilder.path("/studentAttendance/{id}").buildAndExpand(studentAttendance.getStuAttendaceId()).toUri());
 	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-	    }
+	    }*/
 	 
 	    
 	     

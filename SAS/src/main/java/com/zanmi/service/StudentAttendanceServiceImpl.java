@@ -60,4 +60,12 @@ public class StudentAttendanceServiceImpl implements StudentAttendanceService {
 
 	}
 
+	@Override
+	public void saveStudentsAttendance(List<StudentAttendance> studentsAttendance) {
+		// TODO Auto-generated method stub
+		 studentAttendanceDao.saveStudentsAttendance(studentsAttendance);
+	}
+
+	
+	
 }

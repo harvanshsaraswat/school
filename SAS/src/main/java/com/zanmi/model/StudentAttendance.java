@@ -91,6 +91,12 @@ public class StudentAttendance implements Serializable{
 		super();
 		this.stuId = 0;
 	}
+
+	@Override
+	public String toString() {
+		return "StudentAttendance [stuAttendaceId=" + stuAttendaceId + ", stuId=" + stuId + ", empId=" + empId
+				+ ", attendanceDate=" + attendanceDate + ", stuStatus=" + stuStatus + "]";
+	}
 	
 	
 

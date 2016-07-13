@@ -92,12 +92,12 @@ public class Student implements Serializable{
 	// @NotNull
 	// @Size(min=10, max=10)
 	@Column(name = "MOBILE")
-	private int stuMobile;
+	private long stuMobile;
 
 	// @NotNull
 	// @Size(min=1, max=10)
 	@Column(name = "ALTER_MOBILE")
-	private int stuAlterMobile;
+	private long stuAlterMobile;
 
 	@Column(name = "EMAIL")
 	private String stuEmail;
@@ -295,19 +295,19 @@ public class Student implements Serializable{
 		this.stuMailPin = stuMailPin;
 	}
 
-	public int getStuMobile() {
+	public long getStuMobile() {
 		return stuMobile;
 	}
 
-	public void setStuMobile(int stuMobile) {
+	public void setStuMobile(long stuMobile) {
 		this.stuMobile = stuMobile;
 	}
 
-	public int getStuAlterMobile() {
+	public long getStuAlterMobile() {
 		return stuAlterMobile;
 	}
 
-	public void setStuAlterMobile(int stuAlterMobile) {
+	public void setStuAlterMobile(long stuAlterMobile) {
 		this.stuAlterMobile = stuAlterMobile;
 	}
 

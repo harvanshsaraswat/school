@@ -1,12 +1,19 @@
 'use strict';
  
-App.controller('StudentController', ['$scope', 'studentsAttendaceService', function($scope, studentsAttendaceService) {
+App.controller('StudentAttendanceController', ['$scope', 'studentsAttendaceService', function($scope, studentsAttendaceService) {
           var self = this;
           
           
           self.studentAttendance={stuAttendaceId:null,stuId:'',empId:'',attendanceDate:'',stuStatus:''};
           
           self.studentsAttendance=[];
+          
+          
+          //-------------------------------------
+          
+          
+          
+          
           
          
           self.getAllStudentsAttendaceByDate = function(attendanceDate){

@@ -75,6 +75,17 @@ public class StudentAttendanceDaoImpl extends AbstractDao<Integer, StudentAttend
 		return (StudentAttendance) criteria.uniqueResult();
 	}
 
+	@Override
+	public void saveStudentsAttendance(List<StudentAttendance> studentsAttendance) {
+		
+
+		for (StudentAttendance studentAttendance : studentsAttendance) {
+			
+			persist(studentAttendance);
+		}
+		
+	}
+
 	
 
 }

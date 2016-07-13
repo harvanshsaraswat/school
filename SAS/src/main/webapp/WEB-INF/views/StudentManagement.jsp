@@ -25,6 +25,7 @@
 </head>
 <body ng-app="myApp" class="ng-cloak">
 
+
 	<div class="generic-container"
 		ng-controller="StudentController as ctrl">
 		<div class="panel panel-default">
@@ -35,13 +36,13 @@
 				<form ng-submit="ctrl.submit()" name="myForm"
 					class="form-horizontal">
 					<input type="hidden" ng-model="ctrl.student.stuId" /> <label
-						id="slabel1" ng-click="show=1" class="col-md-12">Student
+						id="slabel1" ng-click="show=1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Student
 						Details </label><br />
 					<div ng-show="show==1">
 						<div class="row">
-							<div class="form-group col-md-6">
+							
 
-								<div class="col-md-6">
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<input type="text" ng-model="ctrl.student.stuName"
 										name="stuName" class="text-format form-control input-sm"
 										placeholder="Student Name" required ng-minlength="3" />
@@ -53,29 +54,13 @@
 											field is invalid </span>
 									</div>
 								</div>
-							</div>
-							<div class="form-group col-md-6"></div>
+							
+							<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">hhhh</div>
 						</div>
+					
 						
-						 <div class="row">
-                      
-                        <div class="form-group col-md-12">
-                        
-                        <input type="file" ng-file-select="onFileSelect($files)" >
-                        
-                        <b>Preview:</b><br />
-   <i ng-hide="imageSrc">No image choosed</i>
-   <img ng-src="{{imageSrc}}" style="width:100px;"/><br/>
-                        </div>
-                      </div>
 						<div class="row">
-
-
-							<div class="form-group col-md-6">
-								<!-- 								<label class="col-md-2 control-lable" for="stuDob">Student
-									DOB:</label> -->
-
-								<div class="col-md-6">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<!-- 	<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
 										class="text-format form-control input-sm dateclass placeholderclass" ng-attr-placeholder="$(this).removeClass('placeholderclass')"
 										placeholder="Enter DOB" /> -->
@@ -93,11 +78,8 @@
 											required field</span>
 									</div>
 								</div>
-							</div>
-							<div class="form-group col-md-6">
-								<!-- 								<label class="col-md-2 control-lable" for="stuGender">Student
-									Gender:</label> -->
-								<div class="col-md-6">
+							
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<select ng-model="ctrl.student.stuGender" name="stuGender"
 										id="stuGender" class="text-format form-control input-sm">
 										<!-- required="required" -->
@@ -113,7 +95,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						
 						<div class="row">
 							<div class="form-group col-md-6">
 								<!-- 								<label class="col-md-2 control-lable" for="stuBloodGroup">Student
@@ -208,7 +190,7 @@
 
 
 					</div>
-					<label id="slabel2" ng-click="show=2" class="col-md-12">Student
+					<label id="slabel2" ng-click="show=2" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Student
 						Parents Details </label><br />
 					<div ng-show="show==2">
 						<div class="row">
@@ -281,7 +263,7 @@
 						</div>
 
 					</div>
-					<label id="slabel3" ng-click="show=3" class="col-md-12">Student
+					<label id="slabel3" ng-click="show=3" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Student
 						Contact Details </label><br />
 					<div ng-show="show==3">
 						<div class="row">
@@ -383,7 +365,7 @@
 					</div>
 
 
-					<label id="slabel3" ng-click="show=4" class="col-md-12">Previous
+					<label id="slabel3" ng-click="show=4" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Previous
 						College Details </label><br />
 					<div ng-show="show==4">
 
@@ -478,7 +460,7 @@
 
 					</div>
 
-					<label id="slabel3" ng-click="show=5" class="col-md-12">Present
+					<label id="slabel3" ng-click="show=5" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Present
 						College Details </label><br />
 					<div ng-show="show==5">
 
@@ -532,7 +514,7 @@
 								<!-- 								<label class="col-md-2 control-lable" for="stuClass">Student
 									Class:</label> -->
 								<div class="col-md-6">
-									<select ng-model="stuClass" ng-change="ctrl.change(stuClass)"
+									<select  ng-model="ctrl.student.stuClass" ng-change="ctrl.change(ctrl.student.stuClass)"
 										class="form-control input-sm" required>
 
 										<!-- You can have ONE default, null selection option. -->
@@ -555,7 +537,7 @@
 									Section:</label> -->
 								<div class="col-md-6">
 									<select ng-options="o as o for o in ctrl.sections"
-										ng-model="stuSection" class="form-control input-sm"
+										ng-model="ctrl.student.stuSection" class="form-control input-sm"
 										required>
 										<option value="">-- Select Section --</option>
 									</select>
@@ -570,7 +552,7 @@
 								<!-- 								<label class="col-md-2 control-lable" for="stuWing">
 									Student Wing:</label> -->
 								<div class="col-md-6">
-									<select ng-model="stuWing"
+									<select ng-model="ctrl.student.stuWing"
 										class="form-control input-sm">
 										<!-- You can have ONE default, null selection option. -->
 										<option value="">- - Seclect Wing - -</option>
@@ -598,7 +580,9 @@
 
 						</div>
 
-						<div class="row">
+				
+    
+ 					   <div class="row">
 							<div class="form-group col-md-6">
 								<!-- 								<label class="col-md-2 control-lable" for="stuHostel">Student
 									Hostel:</label> -->
@@ -720,5 +704,9 @@
 	<script src="<c:url value='/static/js/service/student_service.js'/>"></script>
 	<script
 		src="<c:url value='/static/js/controller/student_controller.js'/>"></script>
+
+
+    
 </body>
+
 </html>

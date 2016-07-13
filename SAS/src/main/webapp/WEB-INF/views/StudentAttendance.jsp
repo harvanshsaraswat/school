@@ -40,7 +40,7 @@
 							<!-- 								<label class="col-md-2 control-lable" for="stuClass">Student
 									Class:</label> -->
 							<div class="col-md-8">
-								<select ng-model="ctrl.student.stuClass" ng-change="ctrl.change(stuClass)"
+								<select ng-model="ctrl.studentClassSectionAttendance.stuAtndClass" ng-change="ctrl.change(stuAtndClass)"
 									class="username form-control input-sm" required>
 
 									<!-- You can have ONE default, null selection option. -->
@@ -63,13 +63,34 @@
 									Section:</label> -->
 							<div class="col-md-8">
 								<select ng-options="o as o for o in ctrl.sections"
-									ng-model="ctrl.student.stuSection" class="username form-control input-sm"
+									ng-model="ctrl.studentClassSectionAttendance.stuAtndSection" class="username form-control input-sm"
 									required>
 									<option value="">-- Select Section --</option>
 								</select>
 
 							</div>
 						</div>
+						
+						<div class="col-md-3">
+								<!-- 	<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
+										class="text-format form-control input-sm dateclass placeholderclass" ng-attr-placeholder="$(this).removeClass('placeholderclass')"
+										placeholder="Enter DOB" /> -->
+								<input type="date" ng-model="ctrl.studentClassSectionAttendance.stuAtndDate" id="stuAtndDate"
+									placeholder="Date"
+									ng-click="ctrl.removeClass('stuAtndDate')"
+									class="text-format form-control input-sm dateclass placeholderclass">
+
+								<div class="has-error" ng-show="myForm.$dirty">
+									<span ng-show="myForm.stuDob.$error.required">This is a
+										required field</span>
+								</div>
+							</div>
+							<div class="col-md-3">
+									<input type="text" ng-model="ctrl.studentClassSectionAttendance.stuAtndEmpId"
+										 class="form-control input-sm"
+										placeholder="emp id" />
+							</div>
+							
 						<div class="form-group col-md-2">
 							<div class="form-actions floatRight">
 								<input type="submit"
@@ -106,6 +127,8 @@
 								<tr>
 									<th>Id</th>
 									<th>Name</th>
+									<th>Date</th>
+									<th>Emp</th>
 									<!-- <th>Class</th>
 									<th>Section</th> -->
 									<th>Status</th>
@@ -118,54 +141,39 @@
 							<tbody>
 								<tr ng-repeat="u in ctrl.studentsAttendance">
 									<td><span ng-bind="u.stuId"></span> </td>
-									<td><span ng-bind="ctrl.students[$index].stuName"></span> </td>									
+									<td><span ng-bind="u.stuName"></span> </td>		
+									<td><span ng-bind="u.attendanceDate |  date:'MM/dd/yyyy'"></span></td>	
+									<td><span ng-bind="u.empId"></span> </td>						
 							
 									<td>
 									
-									<select ng-model="u.stuStatus" 
-									class="form-control input-sm" required>
+									<select ng-model="ctrl.studentsAttendance[$index].stuStatus" class="form-control input-sm" required>
 
 									<!-- You can have ONE default, null selection option. -->
-									<option value="">- - Seclect Status - -</option>
-									<option value="Present" selected>Present</option>
+									<!-- <option value="">- - Seclect Status - -</option> -->
+									<option value="Present">Present</option>
 									<option value="Absent">Absent</option>
 									</select>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-					</form>
+					
 					<div class="row">
 
 
-						<div class="form-group col-md-6">
-
-
-							<div class="col-md-6">
-								<!-- 	<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
-										class="text-format form-control input-sm dateclass placeholderclass" ng-attr-placeholder="$(this).removeClass('placeholderclass')"
-										placeholder="Enter DOB" /> -->
-								<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
-									placeholder="Date"
-									ng-onClick="$(this).removeClass('placeholderclass')"
-									class="text-format form-control input-sm dateclass placeholderclass">
-
-								<div class="has-error" ng-show="myForm.$dirty">
-									<span ng-show="myForm.stuDob.$error.required">This is a
-										required field</span>
-								</div>
-							</div>
-						</div>
-						<div class="form-group col-md-6">
+						
+						<div class="form-group col-md-12">
 							<!-- 								<label class="col-md-2 control-lable" for="stuGender">Student
 									Gender:</label> -->
 							<div class="col-md-6">
-								<button type="button" ng-click="ctrl.save(u.stuId)"
-									class="btn btn-success custom-width">save</button>
+								<input type="submit" value="Save Attendance"
+								class="btn btn-primary btn-sm" />
 
 							</div>
 						</div>
 					</div>
+					</form>
 
 				</div>
 			</div>
@@ -173,12 +181,12 @@
 			</div>
 		</div>
 
-		<div class="panel panel-default">
+		<div class="panel panel-default" >
 			<!-- Default panel contents -->
-			<div class="panel-heading">
+			<div class="panel-heading" >
 				<span class="lead">List of Students after Attendance</span>
 			</div>
-
+<div class="formcontainer" ng-controller="StudentController as ctrll">
 			<div class="tablecontainer">
 
 				<table class="table table-hover">
@@ -196,10 +204,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="u in ctrl.students">
+						<tr ng-repeat="up in ctrll.studentsAttendanceAfterSave">
 							<td><input type="checkbox" ng-model="checkboxModel"></td>
 							<label> </label>
-							<!-- 							<td><span ng-bind="u.stuId"></span></td>
+							<!-- <td><span ng-bind="up.stuId"></span></td>
+														<td><span ng-bind="u.stuId"></span></td>
 							<td><span ng-bind="u.stuName"></span></td>
 							<td><span ng-bind="u.stuFatherName"></span></td>
 							<td><span ng-bind="u.stuDob |  date:'MM/dd/yyyy'"></span></td> -->
@@ -222,7 +231,7 @@
 					</tbody>
 				</table>
 
-
+</div>
 
 			</div>
 		</div>

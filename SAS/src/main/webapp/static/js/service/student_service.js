@@ -18,6 +18,32 @@ App.factory('StudentService', ['$http', '$q', function($http, $q){
 					);
 	},
 	
+	saveStudentAttendance: function(studentsAttendance) {
+		return $http.post('http://localhost:8080/SAS/studentAttendance/', studentsAttendance)
+		.then(
+				function(response){
+					console.log("in service in saveStudentAttendance ");
+					return response.data;
+				}, 
+				function(errResponse){
+					console.error('Error while Saving StudentAttendance');
+					return $q.reject(errResponse);
+				}
+		);
+	},
+	
+	getAllStudentsAttendaceByDate: function(attendanceDate) {
+		return $http.get('http://localhost:8080/SAS/studentAttendance/'+attendanceDate)
+				.then(
+						function(response){
+							return response.data;
+						}, 
+						function(errResponse){
+							console.error('Error while fetching Student Attendance By date');
+							return $q.reject(errResponse);
+						}
+				);
+},
 	//----------------------------------------------- End --------------------------------------------
 		
 			fetchAllStudents: function() {
@@ -84,6 +110,8 @@ App.factory('StudentService', ['$http', '$q', function($http, $q){
 					}
 			);
 },
+
+
 
 	}		    
 }]);
