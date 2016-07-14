@@ -86,6 +86,15 @@ public class StudentAttendanceDaoImpl extends AbstractDao<Integer, StudentAttend
 		
 	}
 
+	@Override
+	public StudentAttendance findAttendanceByAttendanceId(int attendanceId) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("stuAttendaceId", attendanceId));
+		criteria.addOrder(Order.desc("stuAttendaceId"));
+		
+		return (StudentAttendance) criteria.uniqueResult();
+	}
+
 	
 
 }

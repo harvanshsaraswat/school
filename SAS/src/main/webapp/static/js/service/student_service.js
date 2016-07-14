@@ -44,6 +44,20 @@ App.factory('StudentService', ['$http', '$q', function($http, $q){
 						}
 				);
 },
+
+
+updateStudentAttendance : function (attendenceId,studentAttendance){
+	return $http.put('http://localhost:8080/SAS/studentAttendance/'+attendenceId,studentAttendance)
+	.then(
+			function(response){
+				return response.data;
+			}, 
+			function(errResponse){
+				console.error('Error while updating student Attendance');
+				return $q.reject(errResponse);
+			}
+	);
+},
 	//----------------------------------------------- End --------------------------------------------
 		
 			fetchAllStudents: function() {

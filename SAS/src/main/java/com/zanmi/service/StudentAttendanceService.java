@@ -20,5 +20,7 @@ public interface StudentAttendanceService {
 	void updateStudentAttendace(StudentAttendance studentAttendance);
 	
 	void saveStudentsAttendance(List<StudentAttendance> studentsAttendance);
+	
+	StudentAttendance findAttendanceByAttendanceId(int attendanceID);
 
 }

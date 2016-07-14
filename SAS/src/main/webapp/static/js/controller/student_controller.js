@@ -28,16 +28,16 @@ App
 								stuMobile : '',
 								stuAlterMobile : '',
 								stuEmail : '',
-								stuNatinality : '',
-								stuMotherToung : '',
+								stuNatinality : 'Indian',
+								stuMotherToung : 'Hindi',
 								stuClass : '',
 								stuSection : '',
 								stuWing : '',
 								stuGuardian : '',
 								stuCategory : '',
 								stuCast : '',
-								stuHostel : '',
-								stuTransport : '',
+								stuHostel : 'No',
+								stuTransport : 'No',
 								stuPrevClgName : '',
 								stuPrvClgBoard : '',
 								stuPrevClgAdd : '',
@@ -55,13 +55,23 @@ App
 								stuAtndDate : '',
 								stuAtndEmpId : '1'
 							};
-
+							
+							self.studentAttendance = {
+									stuAttendaceId : null,
+									stuId : '',
+									stuName : '',
+									empId :'',
+									attendanceDate : '',
+									stuStatus : ''
+								};
+							
+							self.rowLimit=5;
 							self.students = [];
 							self.sections = [];
 							self.studentsAttendance = [];
 							self.studentsAttendanceAfterSave=[];
 
-							self.image = "";
+							/*self.image = "";
 
 							$scope.getFile = function() {
 								$scope.progress = 0;
@@ -69,8 +79,13 @@ App
 										.then(function(result) {
 											$scope.imageSrc = result;
 										});
-							};
+							};*/
 
+	// ------------------------------------- For student Management -------------------------------------
+							
+							
+							//--------------- For fetching all the students -----------------------
+							
 							self.fetchAllStudents = function() {
 								StudentService
 										.fetchAllStudents()
@@ -83,6 +98,8 @@ App
 															.error('Error while fetching Currencies');
 												});
 							};
+							
+							//---------------- For saving new student ------------------------------
 
 							self.createStudent = function(student) {
 								StudentService
@@ -95,6 +112,8 @@ App
 												});
 							};
 
+							//---------------- For updating student ------------------------------
+							
 							self.updateStudent = function(student, stuId) {
 								StudentService
 										.updateStudent(student, stuId)
@@ -105,6 +124,9 @@ App
 															.error('Error while updating student.');
 												});
 							};
+							
+							//---------------- For deleting student ------------------------------
+							
 
 							self.deleteStudent = function(id) {
 								StudentService
@@ -117,6 +139,8 @@ App
 												});
 							};
 
+							//---------------- For fetching section based on class ------------------------------
+							
 							self.fetchSections = function(cls) {
 								StudentService
 										.fetchSections(cls)
@@ -130,102 +154,9 @@ App
 												});
 							};
 
-							self.fetchAllStudents();
-
-							//-------------------------copying student for attendance ---------------------
-
-							self.copyStuIdInStudentsAttendance = function(
-									studentClassSectionAttendance) {
-
-								/*console.log("copy attendance");*/
-								for (var i = 0; i < self.students.length; i++) {
-									self.studentAttendance = {
-										stuAttendaceId : null,
-										stuId : "" + self.students[i].stuId
-												+ "",
-										stuName : "" + self.students[i].stuName
-												+ "",
-										empId : ""
-												+ studentClassSectionAttendance.stuAtndEmpId
-												+ "",
-										attendanceDate : '2016-07-14'/*""
-												+ studentClassSectionAttendance.stuAtndDate
-												+ ""*/,
-										stuStatus : 'Present'
-									};
-
-									self.studentsAttendance
-											.push(self.studentAttendance);
-								}
-
-							}
-
-							//  ------------------------------------Fetching  Student for Attendance Based on class and section ---------
-
-							self.fetchStudentBasedOnClassAndSections = function(
-									studentClassSectionAttendance) {
-
-								StudentService
-										.fetchStudentBasedOnClassAndSections(
-												studentClassSectionAttendance.stuAtndClass,
-												studentClassSectionAttendance.stuAtndSection)
-										.then(
-												function(d) {
-
-													self.students = d;
-													self
-															.copyStuIdInStudentsAttendance(studentClassSectionAttendance);
-												},
-												function(errResponse) {
-													console
-															.error('Error while fetching Currencies');
-												});
-							};
-
-							self.submit1 = function() {
-
-								//   console.log('Fething All Student', self.studentClassSectionAttendance.stuAtndClass);    
-								self
-										.fetchStudentBasedOnClassAndSections(self.studentClassSectionAttendance);
-
-							};
-
-							//  ------------------------------------saving  Student Attendance ---------
-
-							self.submitAttendance = function() {
-
-								self.saveStudentAttendance(self.studentsAttendance);
-
-							};
-
-							self.saveStudentAttendance = function(studentsAttendance) {
-								StudentService.saveStudentAttendance(studentsAttendance)
-										.then(
-												self.getAllStudentsAttendaceByDate,
-												function(errResponse) {
-													console
-															.error('Error while creating User.');
-												});
-							};
 							
-							  self.getAllStudentsAttendaceByDate = function(){
-								  StudentService.getAllStudentsAttendaceByDate('2016-07-14')
-					                  .then(
-					      					       function(d) {
-					      					    	 console.log('Student Attendance before self.studentsAttendanceAfterSave' );
-					      						      self.studentsAttendanceAfterSave=d;
-					      						    console.log('Student Attendance AFTER self.studentsAttendanceAfterSave',self.studentsAttendanceAfterSave );
-					      						    //console.log('Student Attendance with self.studentsAttendanceAfterSave',self.studentsAttendanceAfterSave);
-					      						      self.studentsAttendance = [];
-
-					      					       },
-					            					function(errResponse){
-					            						console.error('Error while fetching Student Attendance');
-					            					}
-					      			       );
-					          };
-							//----------------------------------------------End -----------------------------------------
-
+							self.fetchAllStudents();
+							
 							self.submit = function() {
 								if (self.student.stuId == null) {
 									
@@ -256,14 +187,140 @@ App
 									}
 								}
 							};
-
-							/*------------------------------------------- for Section selection basis on class -------------------------------------  */
+							
+							self.remove = function(id) {
+								/*console.log('id to be deleted', id);*/
+								if (self.student.stuId === id) {//clean form if the user to be deleted is shown there.
+									self.reset();
+								}
+								self.deleteStudent(id);
+							};
+							
 							self.change = function(cls) {
 								/*console.log('cls to be edited', cls);*/
 								self.fetchSections(cls);
 							};
+	//---------------------------------- STUDENT SECTION END --------------------------------------------------
 
-							/*------------------------------------------- for date field -------------------------------------  */
+							
+							
+							//-------------------------copying student for attendance ---------------------
+
+							self.copyStuIdInStudentsAttendance = function(
+									studentClassSectionAttendance) {
+
+								/*console.log("copy attendance");*/
+								for (var i = 0; i < self.students.length; i++) {
+									self.studentAttendance = {
+										stuAttendaceId : null,
+										stuId : "" + self.students[i].stuId
+												+ "",
+										stuName : "" + self.students[i].stuName
+												+ "",
+										empId : ""
+												+ studentClassSectionAttendance.stuAtndEmpId
+												+ "",
+										attendanceDate : '2016-07-16'/*""
+												+ studentClassSectionAttendance.stuAtndDate
+												+ ""*/,
+										stuStatus : 'Present'
+									};
+
+									self.studentsAttendance
+											.push(self.studentAttendance);
+								}
+
+							}
+
+					//  ------------------------------------Fetching  Student for Attendance Based on class and section ---------
+
+							self.fetchStudentBasedOnClassAndSections = function(
+									studentClassSectionAttendance) {
+
+								StudentService
+										.fetchStudentBasedOnClassAndSections(
+												studentClassSectionAttendance.stuAtndClass,
+												studentClassSectionAttendance.stuAtndSection)
+										.then(
+												function(d) {
+
+													self.students = d;
+													self
+															.copyStuIdInStudentsAttendance(studentClassSectionAttendance);
+												},
+												function(errResponse) {
+													console
+															.error('Error while fetching Currencies');
+												});
+							};
+							
+
+							//-----------------------------   ---------------------------
+							
+							self.submit1 = function() {
+
+								self.fetchStudentBasedOnClassAndSections(self.studentClassSectionAttendance);
+
+							};
+
+							
+							//  ------------------------------------saving  Student Attendance ---------
+
+							self.submitAttendance = function() {
+
+								self.saveStudentAttendance(self.studentsAttendance);
+
+							};
+
+							self.saveStudentAttendance = function(studentsAttendance) {
+								StudentService.saveStudentAttendance(studentsAttendance)
+										.then(
+												self.getAllStudentsAttendaceByDate,
+												function(errResponse) {
+													console
+															.error('Error while creating User.');
+												});
+							};
+							
+							  self.getAllStudentsAttendaceByDate = function(){
+								  StudentService.getAllStudentsAttendaceByDate('2016-07-16')
+					                  .then(
+					      					       function(d) {
+					      					    	 console.log('Student Attendance before self.studentsAttendanceAfterSave' );
+					      						      self.studentsAttendanceAfterSave=d;
+					      						    console.log('Student Attendance AFTER self.studentsAttendanceAfterSave',self.studentsAttendanceAfterSave );
+					      						    //console.log('Student Attendance with self.studentsAttendanceAfterSave',self.studentsAttendanceAfterSave);
+					      						      self.studentsAttendance = [];
+
+					      					       },
+					            					function(errResponse){
+					            						console.error('Error while fetching Student Attendance');
+					            					}
+					      			       );
+					          };
+					          
+					          
+					          
+					          
+					          self.updateAttendance=function(studentAttendance){
+					        	  console.log('inside upadte attendance for', studentAttendance.stuAttendaceId);
+					        	  StudentService.updateStudentAttendance(studentAttendance.stuAttendaceId,studentAttendance) 
+					        	  .then(
+					        			  self.getAllStudentsAttendaceByDate,
+				            					function(errResponse){
+				            						console.error('Error while updating Student Attendance');
+				            					}
+				      			       );
+					        	  
+					        	  
+					          }
+							//----------------------------------------------End -----------------------------------------
+
+						
+
+							
+
+							/*------------------------------------------- for removing class from date field -------------------------------------  */
 
 							self.removeClass = function(fieldId) {
 
@@ -273,7 +330,7 @@ App
 								myEl.removeClass('placeholderclass');
 							};
 
-							/*------------------------------------------- for image -------------------------------------  */
+							/*------------------------------------------- for image -------------------------------------  
 
 							var formdata = new FormData();
 							self.getTheFiles = function($files) {
@@ -301,59 +358,53 @@ App
 								}
 							};
 
-							/*------------------------------------------- end -------------------------------------  */
+							------------------------------------------- end -------------------------------------  */
 
-							/*------------------------------------------- for remove the student -------------------------------------  */
+							/*------------------------------------------- for reset the student -------------------------------------  */
 
-							self.remove = function(id) {
-								/*console.log('id to be deleted', id);*/
-								if (self.student.stuId === id) {//clean form if the user to be deleted is shown there.
-									self.reset();
-								}
-								self.deleteStudent(id);
-							};
+							
 
 							self.reset = function() {
 								self.student = {
-									stuId : null,
-									stuRollNo : '',
-									stuSrNo : '',
-									stuName : '',
-									stuProvince : '',
-									stuBloodGroup : '',
-									stuFatherName : '',
-									stuFatherIncome : '',
-									stuFatherOccupation : '',
-									stuMotherName : '',
-									stuDob : '',
-									stuGender : '',
-									stuPerAddress : '',
-									stuPerPin : '',
-									stuMailAddress : '',
-									stuMailPin : '',
-									stuMobile : '',
-									stuAlterMobile : '',
-									stuEmail : '',
-									stuNatinality : '',
-									stuMotherToung : '',
-									stuClass : '',
-									stuSection : '',
-									stuWing : '',
-									stuGuardian : '',
-									stuCategory : '',
-									stuCast : '',
-									stuHostel : '',
-									stuTransport : '',
-									stuPrevClgName : '',
-									stuPrvClgBoard : '',
-									stuPrevClgAdd : '',
-									stuPrevClgResult : '',
-									stuPrevClgPercent : '',
-									stuTcReceiveStatus : '',
-									stuTcReceiveDate : '',
-									stuAddDate : '',
-									stuImage : ''
-								};
+										stuId : null,
+										stuRollNo : '',
+										stuSrNo : '',
+										stuName : '',
+										stuProvince : '',
+										stuBloodGroup : '',
+										stuFatherName : '',
+										stuFatherIncome : '',
+										stuFatherOccupation : '',
+										stuMotherName : '',
+										stuDob : '',
+										stuGender : '',
+										stuPerAddress : '',
+										stuPerPin : '',
+										stuMailAddress : '',
+										stuMailPin : '',
+										stuMobile : '',
+										stuAlterMobile : '',
+										stuEmail : '',
+										stuNatinality : 'Indian',
+										stuMotherToung : 'Hindi',
+										stuClass : '',
+										stuSection : '',
+										stuWing : '',
+										stuGuardian : '',
+										stuCategory : '',
+										stuCast : '',
+										stuHostel : 'No',
+										stuTransport : 'No',
+										stuPrevClgName : '',
+										stuPrvClgBoard : '',
+										stuPrevClgAdd : '',
+										stuPrevClgResult : '',
+										stuPrevClgPercent : '',
+										stuTcReceiveStatus : '',
+										stuTcReceiveDate : '',
+										stuAddDate : '',
+										stuImage : ''
+									};
 								$scope.myForm.$setPristine(); //reset Form
 							};
 

@@ -21,4 +21,6 @@ public interface StudentAttendanceDao {
 	
 	void saveStudentsAttendance(List<StudentAttendance> studentsAttendance);
 
+	StudentAttendance findAttendanceByAttendanceId(int attendanceId);
+
 }

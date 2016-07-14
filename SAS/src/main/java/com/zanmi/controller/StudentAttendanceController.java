@@ -93,7 +93,7 @@ public class StudentAttendanceController {
 	    //------------------- Update a StudentAttendance --------------------------------------------------------
 	     
 	    @RequestMapping(value = "/studentAttendance/{date}/{stuId}", method = RequestMethod.PUT)
-	    public ResponseEntity<StudentAttendance> updateStudent( @PathVariable(value = "date") Date date, 
+	    public ResponseEntity<StudentAttendance> updateStudentAttendanceByDate( @PathVariable(value = "date") Date date, 
 	    	      @PathVariable(value = "stuId") int stuId, @RequestBody StudentAttendance studentAttendance) {
 	        System.out.println("Updating Student " + stuId);
 	         
@@ -113,6 +113,26 @@ public class StudentAttendanceController {
 	        return new ResponseEntity<StudentAttendance>(currentStudentAttendance, HttpStatus.OK);
 	    }
 	 
+	    @RequestMapping(value = "/studentAttendance/{attendanceId}", method = RequestMethod.PUT)
+	    public ResponseEntity<StudentAttendance> updateStudentAttendance( @PathVariable(value = "attendanceId") int attendanceId, 
+	    	       @RequestBody StudentAttendance studentAttendance) {
+	        System.out.println("Updating Student Attendance " + attendanceId);
+	         
+	        StudentAttendance currentStudentAttendance = studentAttendanceService.findAttendanceByAttendanceId(attendanceId);
+	         
+	        if (currentStudentAttendance==null) {
+	            System.out.println("currentStudentAttendance with id " + attendanceId + " not found");
+	            return new ResponseEntity<StudentAttendance>(HttpStatus.NOT_FOUND);
+	        }
+	 
+	        currentStudentAttendance.setAttendanceDate(studentAttendance.getAttendanceDate());
+	        currentStudentAttendance.setEmpId(studentAttendance.getEmpId());
+	        currentStudentAttendance.setStuId(studentAttendance.getStuId());
+	        currentStudentAttendance.setStuStatus(studentAttendance.getStuStatus());
+	         
+	        studentAttendanceService.updateStudentAttendace(currentStudentAttendance);
+	        return new ResponseEntity<StudentAttendance>(currentStudentAttendance, HttpStatus.OK);
+	    }
 	 
 	 
 }

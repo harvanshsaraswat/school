@@ -26,11 +26,11 @@
 <body ng-app="myApp" class="ng-cloak">
 
 	<div class="generic-container">
-		<div class="panel panel-default">
+		<div class="panel panel-default"   ng-controller="StudentController as ctrl">
 			<div class="panel-heading">
 				<span class="lead">Student Attendance Form </span>
 			</div>
-			<div class="formcontainer" ng-controller="StudentController as ctrl">
+			<div class="formcontainer" >
 
 				<form ng-submit="ctrl.submit1()" name="myForm1"
 					class="form-horizontal">
@@ -178,7 +178,7 @@
 				</div>
 			</div>
 			
-			</div>
+			
 		</div>
 
 		<div class="panel panel-default" >
@@ -186,17 +186,18 @@
 			<div class="panel-heading" >
 				<span class="lead">List of Students after Attendance</span>
 			</div>
-<div class="formcontainer" ng-controller="StudentController as ctrll">
+			
 			<div class="tablecontainer">
-
+			RowLimit:	<input type="number" step="1" min="1" ng-model="rowLimit"/>
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th width="5%"></th>
 							<th>Name</th>
-							<th>Class</th>
-							<th>Section</th>
+							<!-- <th>Class</th>
+							<th>Section</th> -->
 							<th>Status</th>
+							
 							<!-- <th>Section</th>
 							<th>Mobile</th> -->
 							<!-- <th>Email</th> -->
@@ -204,24 +205,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="up in ctrll.studentsAttendanceAfterSave">
-							<td><input type="checkbox" ng-model="checkboxModel"></td>
-							<label> </label>
-							<!-- <td><span ng-bind="up.stuId"></span></td>
-														<td><span ng-bind="u.stuId"></span></td>
-							<td><span ng-bind="u.stuName"></span></td>
-							<td><span ng-bind="u.stuFatherName"></span></td>
-							<td><span ng-bind="u.stuDob |  date:'MM/dd/yyyy'"></span></td> -->
-							<td><span ng-bind="u.stuClass"></span></td>
-							<td><span ng-bind="u.stuSection"></span></td>
-							<!-- 		<td><span ng-bind="u.stuMobile "></span></td> -->
-							<th width="30%"></th>
-							<td><input type="radio" name="response" ng-model="ad"
-								value="true" /><span> P </span> <input type="radio"
-								name="response" ng-model="adf" /><span> A </span></td>
+						<tr ng-repeat="studentAttendance in ctrl.studentsAttendanceAfterSave | lmitTo:rowLimit">
+						
+							<td><input type="checkbox" ng-model="studentAttendance.stuAttendaceId"></td>
+							<td><span ng-bind="up.stuId"></span></td>
+							
+							
+							<td><select ng-model="studentAttendance.stuStatus" class="form-control input-sm" >
+
+									<!-- You can have ONE default, null selection option. -->
+									<option value="">- - Seclect Status - -</option>
+									<option value="Present">Present</option>
+									<option value="Absent">Absent</option>
+									</select>
+								</td>
 
 							<td>
-								<button type="button" ng-click="ctrl.update(u.stuId)"
+								<button type="button" ng-click="ctrl.updateAttendance(studentAttendance)"
 									class="btn btn-success custom-width">Update</button>
 
 							</td>
