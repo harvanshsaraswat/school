@@ -472,7 +472,7 @@
 								
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								
+							<!-- 	iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii -->
 								
 									<select ng-options="o as o for o in ctrl.sections"
 										ng-model="ctrl.student.stuSection" class="form-control input-sm"
