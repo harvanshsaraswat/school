@@ -1,4 +1,4 @@
-<<!DOCTYPE html >
+<!DOCTYPE html >
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -37,7 +37,7 @@
 				<span class="lead">Student Registration Form </span>
 			</div>
 			<div class="formcontainer">
-				<form ng-submit="ctrl.submit()" name="myForm"	class="form-horizontal">
+				<form ng-submit="ctrl.submit()" name="myForm"	class="form-horizontal" novalidate>
 				
 					<input type="hidden" ng-model="ctrl.student.stuId" />
 					
