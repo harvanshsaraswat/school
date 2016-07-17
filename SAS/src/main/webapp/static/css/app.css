@@ -74,7 +74,7 @@ left:0px;
 visibility:hidden;
 }
 
-#wrapper:hover .text {
+#wrapper:hover .text:before {
 	border:2px solid wheat;
 /*  content:attr(placeholder); */
 	float:right;

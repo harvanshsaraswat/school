@@ -47,8 +47,8 @@
 
 								
 								
-    <input type="text" ng-model="ctrl.student.stuName" name="stuName"  class="text-format form-control input-sm " class="hover" 
-     placeholder="Student Name" required ng-minlength="3"/>
+    <input type="text" ng-model="ctrl.student.stuName" name="stuName"  class="text-format form-control input-sm hover"  
+     placeholder="Student Name enter" required ng-minlength="3"/>
     <i class="text">student name</i>
 
 									<!-- <input type="text" ng-model="ctrl.student.stuName"	name="stuName"   class="text-format form-control input-sm "
