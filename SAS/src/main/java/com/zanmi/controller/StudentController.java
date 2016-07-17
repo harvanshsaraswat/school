@@ -100,9 +100,50 @@ public class StudentController {
 	            return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 	        }
 	 
+	        currentStudent.setStuRollNo(student.getStuRollNo());
+	        currentStudent.setStuSrNo(student.getStuSrNo());
 	        currentStudent.setStuName(student.getStuName());
+	        
+	        currentStudent.setStuProvince(student.getStuProvince());
+	        currentStudent.setStuBloodGroup(student.getStuBloodGroup());
+	        currentStudent.setStuFatherName(student.getStuFatherName());
+	        currentStudent.setStuFatherIncome(student.getStuFatherIncome());
+	        
+	        currentStudent.setStuFatherOccupation(student.getStuFatherOccupation());
+	        currentStudent.setStuMotherName(student.getStuMotherName());
+	        currentStudent.setStuDob(student.getStuDob()); 
+	        currentStudent.setStuGender(student.getStuGender());
 	        currentStudent.setStuPerAddress(student.getStuPerAddress());
+	        currentStudent.setStuPerPin(student.getStuPerPin());
+	        currentStudent.setStuMailAddress(student.getStuMailAddress());
+	        currentStudent.setStuMailPin(student.getStuMailPin());
+	        currentStudent.setStuMobile(student.getStuMobile());
+	        currentStudent.setStuAlterMobile(student.getStuAlterMobile());	        
 	        currentStudent.setStuEmail(student.getStuEmail());
+	        
+	        currentStudent.setStuNatinality(student.getStuNatinality());
+	        currentStudent.setStuMotherToung(student.getStuMotherToung());
+	        currentStudent.setStuClass(student.getStuClass());
+	        currentStudent.setStuSection(student.getStuSection());
+	        currentStudent.setStuWing(student.getStuWing());
+	        currentStudent.setStuGuardian(student.getStuGuardian());
+	        currentStudent.setStuCategory(student.getStuCategory());
+	        currentStudent.setStuCast(student.getStuCast());
+	        currentStudent.setStuHostel(student.getStuHostel());
+	        currentStudent.setStuTransport(student.getStuTransport());
+	        currentStudent.setStuPrevClgName(student.getStuPrevClgName());
+	        currentStudent.setStuPrvClgBoard(student.getStuPrvClgBoard());
+	        
+	        
+	        currentStudent.setStuPrevClgAdd(student.getStuPrevClgAdd());
+	        currentStudent.setStuPrevClgResult(student.getStuPrevClgResult());
+	        currentStudent.setStuPrevClgPercent(student.getStuPrevClgPercent());
+	        currentStudent.setStuTcReceiveStatus(student.getStuTcReceiveStatus());
+	        currentStudent.setStuTcReceiveDate(student.getStuTcReceiveDate());
+	        currentStudent.setStuAddDate(student.getStuAddDate());
+	        currentStudent.setStuImage(student.getStuImage());
+	        
+	        
 	         
 	        studentService.updateStudent(currentStudent);
 	        return new ResponseEntity<Student>(currentStudent, HttpStatus.OK);
