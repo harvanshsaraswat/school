@@ -93,24 +93,6 @@
 								
 							
 								
-									<input type="text" ng-model="ctrl.student.stuCast" id="stuCast"
-										class="form-control input-sm"
-										placeholder="Enter Cast" />
-						</div>
-					
-						
-					
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								image
-								
-								</div>
-							
-								
-							</div>
-						
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								
 									<select ng-model="ctrl.student.stuBloodGroup"
 										name="stuBloodGroup" id="stuBloodGroup"
 										class="form-control input-sm">
@@ -125,6 +107,28 @@
 										<span ng-show="myForm.stuBloodGroup.$error.required">This
 											is a required field</span>
 									</div>
+								
+							
+							
+								
+								
+						</div>
+					
+						
+					
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<img alt="image" src="">
+								</div>
+							
+								
+							</div>
+						
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								
+											<input type="text" ng-model="ctrl.student.stuCast" id="stuCast"
+										class="form-control input-sm"
+										placeholder="Enter Cast" />
 								
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -463,7 +467,7 @@
 								
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<!-- 	iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii -->
+					
 								
 									<select ng-options="o as o for o in ctrl.sections"
 										ng-model="ctrl.student.stuSection" class="form-control input-sm"
@@ -551,7 +555,7 @@
 			<!-- Default panel contents -->
 			<div class="panel-heading">
 				<span class="lead">List of Students </span>
-				<div class="form-actions floatRight">RowLimit:	<input type="number" step="1" min="1" ng-model="ctrl.rowLimit"/></div>
+				<div class="form-actions floatRight">RowLimit:	<input type="number" step="1" min="1" ng-model="ctrl.rowLimit" style="width: 40px;"/></div>
 			</div>
 
 			<div class="tablecontainer">
@@ -601,19 +605,19 @@
 										style="width: 80px;" />
 								</p>
 							</th>
-							<!-- <th>Email</th> -->
-							<th width="20%"></th>
+						
+							
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="u in ctrl.students | filter: searchText | limitTo:ctrl.rowLimit">
-							<td><span ng-bind="u.stuId" ></span></td>
-							<td><span ng-bind="u.stuName | uppercase"></span></td>
-							<td><span ng-bind="u.stuFatherName | uppercase"></span></td>
-							<td><span ng-bind="u.stuDob |  date:'dd/MM/yyyy'"></span></td>
-							<td><span ng-bind="u.stuClass | uppercase"></span></td>
-							<td><span ng-bind="u.stuSection | uppercase"></span></td>
-							<td><span ng-bind="u.stuMobile"></span></td>
+						<tr ng-repeat="u in ctrl.students">
+							<td><span ng-bind="u.stuId"></span></td>
+							<td><span ng-bind="u.stuName"></span></td>
+							<td><span ng-bind="u.stuFatherName"></span></td>
+							<td><span ng-bind="u.stuDob |  date:'MM/dd/yyyy'"></span></td>
+							<td><span ng-bind="u.stuClass"></span></td>
+							<td><span ng-bind="u.stuSection"></span></td>
+							<td><span ng-bind="u.stuMobile "></span></td>
 							<td>
 								<button type="button" ng-click="ctrl.edit(u.stuId)"
 									class="btn btn-success custom-width">Edit</button>
