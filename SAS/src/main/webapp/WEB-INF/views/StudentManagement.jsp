@@ -43,12 +43,16 @@
 					 <label	id="slabel1" ng-click="show=1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Student	Details </label><br />
 					<div ng-show="show==1">
 						<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">							
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="wrapper">							
 
 								
 								
-									<input type="text" ng-model="ctrl.student.stuName"	name="stuName" class="text-format form-control input-sm"
-										    placeholder="Student Name" required ng-minlength="3" />
+    <input type="text" ng-model="ctrl.student.stuName" name="stuName"  class="text-format form-control input-sm " class="hover" 
+     placeholder="Student Name" required ng-minlength="3"/>
+    <i class="text">student name</i>
+
+									<!-- <input type="text" ng-model="ctrl.student.stuName"	name="stuName"   class="text-format form-control input-sm "
+										    placeholder="Student Name" required ng-minlength="3" /> -->
 									     
 									      <div class="has-error" ng-show="myForm.$dirty">
 												<span ng-show="myForm.stuName.$error.required">This is	a required field</span> 

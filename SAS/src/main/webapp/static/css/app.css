@@ -65,3 +65,22 @@ width:1000px;
     width:0%;
     content:"";
 }
+
+
+#wrapper .text {
+position:relative;
+bottom:10px;
+left:0px;
+visibility:hidden;
+}
+
+#wrapper:hover .text {
+	border:2px solid wheat;
+/*  content:attr(placeholder); */
+	float:right;
+	background:blue;
+		margin:2px;
+	color:wheat;
+	font-size:10px;
+visibility:visible;
+}
