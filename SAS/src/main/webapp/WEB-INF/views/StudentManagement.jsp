@@ -6,7 +6,6 @@
 <head>
 <title>Student Management</title>
 
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
@@ -43,9 +42,10 @@
 					
 					 <label	id="slabel1" ng-click="show=1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Student	Details </label><br />
 					<div ng-show="show==1">
-						<div class="row">							
+						<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">							
 
-								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								
 								
 									<input type="text" ng-model="ctrl.student.stuName"	name="stuName" class="text-format form-control input-sm"
 										    placeholder="Student Name" required ng-minlength="3" />
@@ -55,31 +55,16 @@
 												<span ng-show="myForm.stuName.$error.minlength">Minimum	length required is 3</span> 
 												<span ng-show="myForm.stuName.$invalid">This field is invalid </span>
 										</div>
-								</div>
-							
-							<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">hhhh</div>
-						</div>
-					
-						
-						<div class="row">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
+								
+							<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
 										placeholder="Student DOB"
 										ng-click="ctrl.removeClass('stuDob')"
-										class=" text-format form-control input-sm dateclass placeholderclass">
-
-
-
-
-
-									<div class="has-error" ng-show="myForm.$dirty">
+										class=" text-format form-control input-sm dateclass placeholderclass"/>
+							<div class="has-error" ng-show="myForm.$dirty">
 										<span ng-show="myForm.stuDob.$error.required">This is a
 											required field</span>
 									</div>
-								</div>
-							
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								
+									
 									<select ng-model="ctrl.student.stuGender" name="stuGender"
 										id="stuGender" class="text-format form-control input-sm">
 										<!-- required="required" -->
@@ -92,7 +77,35 @@
 										<span ng-show="myForm.stuGender.$error.required">This
 											is a required field</span>
 									</div>
+									<select ng-model="ctrl.student.stuCategory" name="stuCategory"
+										id="stuCategory" class="text-format form-control input-sm">
+										<!-- required="required"> -->
+										<option value="">---select Category---</option>
+										<!-- not selected / blank option -->
+										<option value="General">General</option>
+										<!-- interpolation -->
+										<option value="OBC">OBC</option>
+									</select>
+									<div class="has-error" ng-show="myForm.$dirty">
+										<span ng-show="myForm.stuCategory.$error.required">This
+											is a required field</span>
+									</div>
+								
+							
+								
+									<input type="text" ng-model="ctrl.student.stuCast" id="stuCast"
+										class="form-control input-sm"
+										placeholder="Enter Cast" />
+						</div>
+					
+						
+					
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								image
+								
 								</div>
+							
+								
 							</div>
 						
 						<div class="row">
@@ -102,7 +115,7 @@
 										name="stuBloodGroup" id="stuBloodGroup"
 										class="form-control input-sm">
 										<!-- required="required" -->
-										<option value="">---Please select---</option>
+										<option value="">---select Blood Group---</option>
 										<!-- not selected / blank option -->
 										<option value="AB">AB</option>
 										<!-- interpolation -->
@@ -129,29 +142,7 @@
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 							
-									<select ng-model="ctrl.student.stuCategory" name="stuCategory"
-										id="stuCategory" class="text-format form-control input-sm">
-										<!-- required="required"> -->
-										<option value="">---select Category---</option>
-										<!-- not selected / blank option -->
-										<option value="General">General</option>
-										<!-- interpolation -->
-										<option value="OBC">OBC</option>
-									</select>
-									<div class="has-error" ng-show="myForm.$dirty">
-										<span ng-show="myForm.stuCategory.$error.required">This
-											is a required field</span>
-									</div>
-								
-							</div>
-
-
-
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								
-									<input type="text" ng-model="ctrl.student.stuCast" id="stuCast"
-										class="form-control input-sm"
-										placeholder="Enter Cast" />
+									
 								
 							</div>
 						</div>
