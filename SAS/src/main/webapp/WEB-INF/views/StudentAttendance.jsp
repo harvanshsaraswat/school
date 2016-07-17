@@ -36,10 +36,8 @@
 					class="form-horizontal">
 
 					<div class="row">
-						<div class="form-group col-md-5">
-							<!-- 								<label class="col-md-2 control-lable" for="stuClass">Student
-									Class:</label> -->
-							<div class="col-md-8">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							
 								<select ng-model="ctrl.studentClassSectionAttendance.stuAtndClass" ng-change="ctrl.change(stuAtndClass)"
 									class="username form-control input-sm" required>
 
@@ -56,48 +54,40 @@
 
 								</select>
 
-							</div>
 						</div>
-						<div class="form-group col-md-5">
-							<!-- 								<label class="col-md-2 control-lable" for="stuSection">Student
-									Section:</label> -->
-							<div class="col-md-8">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 								<select ng-options="o as o for o in ctrl.sections"
 									ng-model="ctrl.studentClassSectionAttendance.stuAtndSection" class="username form-control input-sm"
 									required>
 									<option value="">-- Select Section --</option>
 								</select>
 
-							</div>
 						</div>
-						
-						<div class="col-md-3">
-								<!-- 	<input type="date" ng-model="ctrl.student.stuDob" id="stuDob"
-										class="text-format form-control input-sm dateclass placeholderclass" ng-attr-placeholder="$(this).removeClass('placeholderclass')"
-										placeholder="Enter DOB" /> -->
+						</div>
+						<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							
 								<input type="date" ng-model="ctrl.studentClassSectionAttendance.stuAtndDate" id="stuAtndDate"
 									placeholder="Date"
 									ng-click="ctrl.removeClass('stuAtndDate')"
-									class="text-format form-control input-sm dateclass placeholderclass">
+									class=" text-format form-control input-sm dateclass placeholderclass">
 
 								<div class="has-error" ng-show="myForm.$dirty">
 									<span ng-show="myForm.stuDob.$error.required">This is a
 										required field</span>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 									<input type="text" ng-model="ctrl.studentClassSectionAttendance.stuAtndEmpId"
-										 class="form-control input-sm"
+										 class="username form-control input-sm"
 										placeholder="emp id" />
 							</div>
 							
-						<div class="form-group col-md-2">
-							<div class="form-actions floatRight">
-								<input type="submit"
-									value="{{!ctrl.student.stuId ? 'GO' : 'Update'}}"
-									class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+							
+								<input type="submit" value="GO "
+									class="btn btn-primary btn-sm" >
 
-							</div>
 						</div>
 					</div>
 
@@ -117,6 +107,7 @@
 				<!-- Default panel contents -->
 				<div class="panel-heading" >
 					<span class="lead">List of Students </span>
+					<div class="form-actions floatRight">Class: {{ctrl.studentClassSectionAttendance.stuAtndClass}}   Section:{{ctrl.studentClassSectionAttendance.stuAtndSection}}</div>
 				</div>
 
 				<div class="tablecontainer">
@@ -126,7 +117,11 @@
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Name</th>
+									<th>Name <p>
+									<input type="text" ng-model="searchText['stuName']"
+										style="width: 50px;" />
+								</p>
+								</th>
 									<th>Date</th>
 									<th>Emp</th>
 									<!-- <th>Class</th>
@@ -139,7 +134,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="u in ctrl.studentsAttendance">
+								<tr ng-repeat="u in ctrl.studentsAttendance | filter: searchText">
 									<td><span ng-bind="u.stuId"></span> </td>
 									<td><span ng-bind="u.stuName"></span> </td>		
 									<td><span ng-bind="u.attendanceDate |  date:'MM/dd/yyyy'"></span></td>	
@@ -163,10 +158,9 @@
 
 
 						
-						<div class="form-group col-md-12">
-							<!-- 								<label class="col-md-2 control-lable" for="stuGender">Student
-									Gender:</label> -->
-							<div class="col-md-6">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 								<input type="submit" value="Save Attendance"
 								class="btn btn-primary btn-sm" />
 
@@ -185,15 +179,17 @@
 			<!-- Default panel contents -->
 			<div class="panel-heading" >
 				<span class="lead">List of Students after Attendance</span>
+				<div class="form-actions floatRight">RowLimit:	<input type="number" step="1" min="1" ng-model="ctrl.rowLimit"/></div>
 			</div>
 			
 			<div class="tablecontainer">
-			RowLimit:	<input type="number" step="1" min="1" ng-model="rowLimit"/>
+			
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th width="5%"></th>
-							<th>Name</th>
+							<th>Name <input type="text" ng-model="searchText2['stuName']"
+										style="width: 50px;" /></th>
 							<!-- <th>Class</th>
 							<th>Section</th> -->
 							<th>Status</th>
@@ -205,7 +201,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="studentAttendance in ctrl.studentsAttendanceAfterSave | lmitTo:rowLimit">
+						<tr ng-repeat="studentAttendance in ctrl.studentsAttendanceAfterSave | filter: searchText2 | limitTo:ctrl.rowLimit">
 						
 							<td><input type="checkbox" ng-model="studentAttendance.stuAttendaceId"></td>
 							<td><span ng-bind="up.stuId"></span></td>
